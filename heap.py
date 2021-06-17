@@ -26,6 +26,7 @@ def h_insert(lst, element):
         ancestor_pos = (len(lst)//(i*2))-1
     # return lst     
 
+# return deleted element(root element) of the heap
 def h_delete(lst):
     """
     algorithm to implement:
@@ -49,37 +50,46 @@ def h_delete(lst):
     des_pos2 = 2 # 2 * i # this is the (2*i + 1)th position
     ancs_pos = 0 # anscestor position
 
-    while(lst[ancs_pos] < lst[des_pos1] or lst[ancs_pos] < lst[des_pos2]):
+    if len(lst) == 1 or len(lst) == 0:
+        pass
+    elif len(lst) == 2:
+        if (lst[0] < lst[1]):
+            lst[0], lst[1] = lst[1], lst[0]
+
+    else:        
+        while(lst[ancs_pos] < lst[des_pos1] or lst[ancs_pos] < lst[des_pos2]):
        
-        if (lst[des_pos1] > lst[des_pos2]):
-            lst[ancs_pos], lst[des_pos1] = lst[des_pos1], lst[ancs_pos]
-            ancs_pos = des_pos1
-        else:
-            lst[ancs_pos], lst[des_pos2] = lst[des_pos2], lst[ancs_pos]
-            ancs_pos = des_pos2
+            if (lst[des_pos1] > lst[des_pos2]):
+                lst[ancs_pos], lst[des_pos1] = lst[des_pos1], lst[ancs_pos]
+                ancs_pos = des_pos1
+            else:
+                lst[ancs_pos], lst[des_pos2] = lst[des_pos2], lst[ancs_pos]
+                ancs_pos = des_pos2
 
-        des_pos1 = 2 * (ancs_pos + 1) - 1
-        des_pos2 = 2 * (ancs_pos + 1)
+            des_pos1 = 2 * (ancs_pos + 1) - 1
+            des_pos2 = 2 * (ancs_pos + 1)
 
-        # Stop adjusting when there is no other node.
-        if (des_pos1 >= len(lst) or des_pos2 >= len(lst)):
-            break
+            # Stop adjusting when there is no other node.
+            if (des_pos1 >= len(lst) or des_pos2 >= len(lst)):
+                break
     return deleted
 
 def h_create(lst):
     heap = []
     for i in lst:
-        
         h_insert(heap, i)
     return heap
 
 def h_sort(lst):
     heap = h_create(lst)
+
     sorted_list = []
     print(len(heap))
     for i in range(len(heap)):
         print("adding ",i,"th")
-        sorted_list += [h_delete(heap)]
+        a = h_delete(heap)
+        sorted_list += [a]
+    sorted_list.reverse()    
     return sorted_list        
 
 
@@ -90,18 +100,15 @@ heap = [70, 60, 50, 40, 30, 20, 10]
 h_delete(heap)
 # print(heap)
 
-# a = [10, 30, 20, 60, 2, 100, 35,34, 120, 50, 70, 40]
+a = [10, 30, 20, 60, 2, 100, 35,34, 120, 50, 70, 40]
 # print("created heap:", h_create(a))
 # heap4 = [100, 90, 50, 70, 80, 20, 10, 40, 60, 30]
 heap5 = [110, 100, 50, 70, 90, 20, 10, 40, 60, 30, 80]
 
-a = [120,45,40,50,115,125,90,33,7,88,34,5,4,55]
+# a = [120,45,40,50,115,125,90,33,7,88,34,5,4,55]
 
-# for i in a:
-#     h_insert(heap5,i)
+s = h_sort(a)
+print(s)
 
-b = h_sort(heap5)
-    
-print(b)
 
 
