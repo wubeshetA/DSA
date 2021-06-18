@@ -2,6 +2,7 @@
 # implementation of heap data structure
 # this desmostration considers max heap
 
+
 def h_insert(lst, element):
     """"
     here is the algorithm to implement.
@@ -40,7 +41,7 @@ def h_delete(lst):
     
     lst.pop()
   
-    # compare ancestor 'A' to (2*i) and (2*i+1) position (to the descendant)
+    # compare ancestor to (2*i) and (2*i+1) position (to the descendant)
         # if ancestor less than one of the descendants then,
             # compare the descendats,
             # move the greater descendat up on the binary tree represantation of unadjusted heap.
@@ -50,7 +51,7 @@ def h_delete(lst):
     des_pos2 = 2 # 2 * i # this is the (2*i + 1)th position
     ancs_pos = 0 # anscestor position
 
-    if len(lst) == 1 or len(lst) == 0:
+    if len(lst) <=  1:
         pass
     elif len(lst) == 2:
         if (lst[0] < lst[1]):
@@ -74,41 +75,45 @@ def h_delete(lst):
                 break
     return deleted
 
+# h_create - create a heap from a list
+# return: created heap
 def h_create(lst):
     heap = []
     for i in lst:
         h_insert(heap, i)
     return heap
 
+# h_sort - sort a list
+# return: a sorted list
 def h_sort(lst):
     heap = h_create(lst)
-
     sorted_list = []
-    print(len(heap))
+
     for i in range(len(heap)):
-        print("adding ",i,"th")
         a = h_delete(heap)
         sorted_list += [a]
+
     sorted_list.reverse()    
-    return sorted_list        
+    return sorted_list
+       
+def main():
+    # heap = [70, 60, 50, 40, 30, 20, 10]
+    # heap2 = [80, 70, 50, 60, 30, 20, 10, 40]
+    # heap3 = [90, 80, 50, 70, 30, 20, 10, 40, 60]
+    # print(h_sort(heap))
+    # h_delete(heap)
+    # print(heap)
 
+    
+    # print("created heap:", h_create(a))
+    # heap4 = [100, 90, 50, 70, 80, 20, 10, 40, 60, 30]
+    # heap5 = [110, 100, 50, 70, 90, 20, 10, 40, 60, 30, 80]
 
-heap = [70, 60, 50, 40, 30, 20, 10]
-# heap2 = [80, 70, 50, 60, 30, 20, 10, 40]
-# heap3 = [90, 80, 50, 70, 30, 20, 10, 40, 60]
-# print(h_sort(heap))
-h_delete(heap)
-# print(heap)
+    unsorted = [10, 30, 20, 60, 2, 100, 35,34, 120, 50, 70, 40]
+    sorted = h_sort(unsorted)
+    print(sorted)
+    a = input("type st")
+    print(a)
 
-a = [10, 30, 20, 60, 2, 100, 35,34, 120, 50, 70, 40]
-# print("created heap:", h_create(a))
-# heap4 = [100, 90, 50, 70, 80, 20, 10, 40, 60, 30]
-heap5 = [110, 100, 50, 70, 90, 20, 10, 40, 60, 30, 80]
-
-# a = [120,45,40,50,115,125,90,33,7,88,34,5,4,55]
-
-s = h_sort(a)
-print(s)
-
-
-
+if __name__ == "__main__":
+    main()
