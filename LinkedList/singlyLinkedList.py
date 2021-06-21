@@ -10,7 +10,8 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def insert(self, newNode):
+    # insert new Node at the end of the linked list 
+    def insertEnd(self, newNode):
 
         # head -> wube
         if self.head is None:
@@ -25,7 +26,16 @@ class LinkedList:
                 lastNode = self.head.next
                 next
             lastNode.next = newNode
-    
+    # insert New now as the head of the node        
+    def insertHead(self, newNode):
+        if self.head is None:
+            self.head = newNode
+        else:
+            oldHead = self.head
+            self.head = newNode
+            self.head.next = oldHead
+            del oldHead
+
     # prints the linked list
     def printList(self):
         if self.head is None:
@@ -41,14 +51,14 @@ class LinkedList:
 linkedList = LinkedList()
 
 firstNode = Node("wube")
-linkedList.insert(firstNode)
+linkedList.insertEnd(firstNode)
 secondNode = Node("Abe")
-linkedList.insert(secondNode)
+linkedList.insertEnd(secondNode)
 thirdNode = Node("kebe")
-linkedList.insert(thirdNode)
+linkedList.insertEnd(thirdNode)
 
 fourthNode = Node("lemma")
-# linkedList.insertHead(fourthNode)
+linkedList.insertHead(fourthNode)
 linkedList.printList()
 
 print("head: ",linkedList.head.data)
