@@ -26,7 +26,8 @@ class LinkedList:
                 lastNode = self.head.next
                 next
             lastNode.next = newNode
-    # insert New now as the head of the node        
+
+    # insert New as the head of the Linked list        
     def insertHead(self, newNode):
         if self.head is None:
             self.head = newNode
@@ -35,6 +36,30 @@ class LinkedList:
             self.head = newNode
             self.head.next = oldHead
             del oldHead
+
+    # insert a new node between to nodes
+    def insertAt(self, newNode, position):
+        
+        if position == 1:
+            self.insertHead(newNode)
+            return
+        i = 1
+        currentNode = self.head    
+        while i <= position:
+            
+            if i == position:
+                previousNode.next = newNode
+                newNode.next = currentNode
+                # followingNode = precedingNode.next
+                # precedingNode.next = newNode
+                # newNode.next = followingNode
+                # del followingNode
+                break
+
+            previousNode = currentNode
+            currentNode = currentNode.next
+            i+=1
+            
 
     # prints the linked list
     def printList(self):
@@ -58,7 +83,7 @@ thirdNode = Node("kebe")
 linkedList.insertEnd(thirdNode)
 
 fourthNode = Node("lemma")
-linkedList.insertHead(fourthNode)
+linkedList.insertAt(fourthNode, 2)
 linkedList.printList()
 
 print("head: ",linkedList.head.data)
