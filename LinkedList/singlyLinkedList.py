@@ -33,7 +33,6 @@ class LinkedList:
                 if lastNode.next is None:
                     break
                 lastNode = self.head.next
-                next
             lastNode.next = newNode
 
     # insert New as the head of the Linked list        
@@ -99,7 +98,7 @@ class LinkedList:
             previousNode.next = None
         else:
             print("List is empty. Deletion failed!")
-        return        
+      
     # delete a node between two nodes
     def deleteAt(self, position):
         # steps
@@ -129,8 +128,6 @@ class LinkedList:
         previousNode.next = currentNode.next
         currentNode.next = None
 
-            
-
     # print the linked list
     def printList(self):
         if self.head is None:
@@ -142,22 +139,24 @@ class LinkedList:
                 break
             print(currentNode.data)
             currentNode = currentNode.next
-
-
             
-linkedList = LinkedList()
 
-firstNode = Node("wube")
-linkedList.insertEnd(firstNode)
-secondNode = Node("Abe")
-linkedList.insertEnd(secondNode)
-thirdNode = Node("kebe")
-linkedList.insertEnd(thirdNode)
+def main():
+    if __name__ == "__main__":
 
-fourthNode = Node("lemma")
-linkedList.insertAt(fourthNode, 3)
-linkedList.deleteAt(1)
-linkedList.printList()
+        linkedList = LinkedList()
 
+        firstNode = Node("wube")
+        linkedList.insertEnd(firstNode)
+        secondNode = Node("Abe")
+        linkedList.insertEnd(secondNode)
+        thirdNode = Node("kebe")
+        linkedList.insertEnd(thirdNode)
 
-print("head: ",linkedList.head.data)
+        fourthNode = Node("lemma")
+        linkedList.insertAt(fourthNode, 3)
+        linkedList.deleteAt(1)
+        linkedList.printList()
+        
+        print("head: ",linkedList.head.data)
+main()
