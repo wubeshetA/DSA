@@ -25,26 +25,34 @@ class Node:
 
 class LinkedList:
     
-    def __init__(self):
+    def __init__(self, *args):
         self.head = None
         self.tail = None
-    def length(self, head):
-        if type(head) == Node:
-            counter = 1
-            current = head
-            while current.next != None:
-                current = current.next
+        
+        if args is not None:
+            for data in args:
+                node = Node(data)
+                self.insert_tail(node)
+            
+        
+    def length(self):
+        
+            counter = 0
+            current = self.head
+            while type(current) is Node:
                 counter += 1
+                current = current.next
             return counter
         
-    
     def insert_head(self, head):
         head.next = self.head
         self.head = head
-        if self.length(self.head) == 1:
+        if self.length() == 1:
             self.tail = head
 
     def insert_tail(self, tail):
+        if self.head is None:
+            self.insert_head(tail)
         self.tail.next = tail
         self.tail = tail
         
@@ -80,10 +88,10 @@ if __name__ == "__main__":
     node3 = Node(6)
     
     
-lst = LinkedList()
-lst.insert_head(node1)
-lst.insert_tail(node2)
-lst.insert_tail(node3)
+lst = LinkedList(2,3)
+# lst.insert_head(node1)
+# lst.insert_tail(node2)
+# lst.insert_tail(node3)
 
-print(lst.length(node1))
+print(lst.length())
 print(lst)
