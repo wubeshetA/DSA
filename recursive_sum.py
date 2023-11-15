@@ -4,14 +4,16 @@ it is a part of devide and conquer algorithm.
 """
 
 
-def sum(lst):
+def recursive_sum(lst):
     # Base case
-    if len(lst) == 0:
-        return 0
+    if len(lst) == 1:
+        return lst[0]
+    return lst[0] + recursive_sum(lst[1:])
+    
+    # recursive case
+    1 + return recursive_sum([2, 3, 4])
+    1 + 2 + return recursive_sum([3, 4])'"""""""""""" '
 
-    # Recursive case
-    return lst[0] + sum(lst[1:])
 
-
-lst = [1]
+lst = [1, 2, 3, 4]
 print(sum(lst))
