@@ -66,7 +66,7 @@ class SinglyLinkedList:
             # next_node.next = current
         
         self.head = previous
-    def deleteAll(self, data):
+    def delete_all(self, data):
         current = self.head
         previous = None
         while current:
@@ -87,8 +87,39 @@ class SinglyLinkedList:
             else:
                 previous = current
                 current = current.next
-            
         
+    def insert_at(self, index, data):
+        index_counter = 0
+        node = Node(data)
+        current = self.head
+        if index >= self.length():
+            self.tail.next = node
+            self.tail = node
+            return 
+        while current:
+            # if index is 0 (which means users want to insert head)
+            if index == 0:
+                node.next = self.head
+                self.head = node
+                return
+        
+            elif index_counter == index:
+                node.next = current
+                prevous_node.next = node
+                return
+                # else
+            prevous_node = current    
+            current = current.next
+            index_counter += 1
+    
+    def length(self):
+        length = 0
+        current = self.head
+        while current:
+            current = current.next
+            length += 1
+        return length
+    
             
 if __name__ == "__main__":
         
@@ -104,6 +135,7 @@ if __name__ == "__main__":
     my_linked_list.prepend(5)
     my_linked_list.prepend(5)
     my_linked_list.append(5)
+    my_linked_list.insert_at(7, 100)
     # my_linked_list.append(4)
     my_linked_list.display()
     print("head:", my_linked_list.head.data)
@@ -113,6 +145,7 @@ if __name__ == "__main__":
     # print("head:", my_linked_list.head.data)
     # print("tail: ", my_linked_list.tail.data)
     print('----delete-------')
-    my_linked_list.deleteAll(3)
+    my_linked_list.delete_all(3)
     my_linked_list.display()
+    print(my_linked_list.length())
 
